@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Tweetify.DAL;
 using Tweetify.Models;
-
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Tweetify.Controllers
 {
@@ -28,7 +26,7 @@ namespace Tweetify.Controllers
 
                 if (temp != null)
                 {
-                    throw new Exception("User all ready exists");
+                    throw new Exception("Utilisateur existe déja");
                 }
                 else
                 {
@@ -40,7 +38,7 @@ namespace Tweetify.Controllers
             }
         }
 
-        public IActionResult Login()
+        public IActionResult Login(User u)
         {
             // Récupérer un user à partir du username (en minuscules)
             // SI User => Verifier Mdp 
@@ -51,12 +49,38 @@ namespace Tweetify.Controllers
             // SINON 
             //   STFU 
 
-            return View();
+            using (var context = new TweetifyContext())
+            {
+                User temp = context.Users.FirstOrDefault(x => x.Username == u.Username);
+
+                if (temp != null)
+                {
+                    if (temp.Password == u.Password)
+                    {
+                        HttpContext.Session.SetInt32(" UserId ", temp.Id);
+
+                        return RedirectToAction(" Home ", " Index ");
+                    }
+                    else
+                    {
+                        throw new Exception(" wrong password");
+                    }
+
+                }
+                else
+                {
+                    throw new Exception(" wrong User");
+                }
+
+
+            }
+            //return View();
         }
         public IActionResult Logout()
         {
             // VARIABLE DE SESSION ? DIE MUTHAFUKA DIE !
-            return View();
+            HttpContext.Session.Clear();
+            return RedirectToAction(" Home ", " Index ");
         }
     }
 }
