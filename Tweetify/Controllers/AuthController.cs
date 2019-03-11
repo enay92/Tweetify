@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Tweetify.DAL;
 using Tweetify.Models;
 
-namespace Tweetify.Controllers
+namespace Tweetifyk.Controllers
 {
     public class AuthController : Controller
     {
