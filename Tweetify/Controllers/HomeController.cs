@@ -13,11 +13,9 @@ namespace Tweetify.Controllers
     {
         public IActionResult Index()
         {
-            HttpContext.Session.SetString("Username", "Bob");
-            HttpContext.Session.GetString("Username");
+            if (!HttpContext.Session.GetInt32("UserId").HasValue)
+                return RedirectToAction("Login", "Auth");
 
-            HttpContext.Session.SetInt32("UserId", 3);
-            HttpContext.Session.GetInt32("UserId");
             return View();
         }
 

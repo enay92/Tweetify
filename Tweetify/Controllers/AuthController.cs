@@ -7,18 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using Tweetify.DAL;
 using Tweetify.Models;
 
-namespace Tweetifyk.Controllers
+namespace Tweetify.Controllers
 {
     public class AuthController : Controller
     {
-
-        public IActionResult SignUp()
+        public IActionResult Register()
         {
+
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignUp(User u)
+        public async Task<IActionResult> Register(User u)
         {
             using (var context = new TweetifyContext())
             {
@@ -26,7 +26,7 @@ namespace Tweetifyk.Controllers
 
                 if (temp != null)
                 {
-                    throw new Exception("Utilisateur existe déja");
+                    throw new Exception("User all ready exists");
                 }
                 else
                 {
@@ -38,17 +38,14 @@ namespace Tweetifyk.Controllers
             }
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult Login(User u)
         {
-            // Récupérer un user à partir du username (en minuscules)
-            // SI User => Verifier Mdp 
-            // // Si User.MDP == MDP 
-            // //    Je créée la variable de session
-            // // SINON
-            // //   STFU
-            // SINON 
-            //   STFU 
-
             using (var context = new TweetifyContext())
             {
                 User temp = context.Users.FirstOrDefault(x => x.Username == u.Username);
@@ -57,30 +54,25 @@ namespace Tweetifyk.Controllers
                 {
                     if (temp.Password == u.Password)
                     {
-                        HttpContext.Session.SetInt32(" UserId ", temp.Id);
-
-                        return RedirectToAction(" Home ", " Index ");
+                        HttpContext.Session.SetInt32("UserId", temp.Id);
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
-                        throw new Exception(" wrong password");
+                        throw new Exception("Wrong password");
                     }
-
                 }
                 else
                 {
-                    throw new Exception(" wrong User");
+                    throw new Exception("Unknown user");
                 }
-
-
             }
-            //return View();
         }
+
         public IActionResult Logout()
         {
-            // VARIABLE DE SESSION ? DIE MUTHAFUKA DIE !
             HttpContext.Session.Clear();
-            return RedirectToAction(" Home ", " Index ");
+            return RedirectToAction("Home", "Index");
         }
     }
 }

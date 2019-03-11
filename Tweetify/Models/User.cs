@@ -17,5 +17,8 @@ namespace Tweetify.Models
         public Tweet[] Hightlights { get; set; }
         public Follow[] Followers { get; set; }
         public Follow[] Followings { get; set; }
+
+
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Tweetify.Models
 {
     public class Follow
@@ -12,3 +13,4 @@ namespace Tweetify.Models
         public User Following { get; set; }
     }
 }
+

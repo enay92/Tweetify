@@ -15,16 +15,14 @@ namespace Tweetify.DAL
         public DbSet<Follow> Follows { get; set; }
         public DbSet<Like> Likes { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            optionsBuilder
-                .UseMySQL("server=localhost;database=tweetify;user=root;password=toto123");
+            options.UseMySQL("server=localhost;database=tweetify2;user=root;password=");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -44,7 +42,6 @@ namespace Tweetify.DAL
                 entity.HasOne(e => e.OriginalTweet).WithMany(t => t.Answers);
                 entity.HasMany(e => e.Likes).WithOne(l => l.Tweet);
                 entity.HasMany(e => e.Answers).WithOne(t => t.OriginalTweet);
-
             });
 
             modelBuilder.Entity<Like>(entity =>
@@ -60,7 +57,8 @@ namespace Tweetify.DAL
                 entity.HasOne(e => e.Follower).WithMany(u => u.Followings);
                 entity.HasOne(e => e.Following).WithMany(u => u.Followers);
             });
-
         }
     }
 }
+
+

@@ -16,5 +16,7 @@ namespace Tweetify.Models
         public Tweet OriginalTweet { get; set; }
         public Like[] Likes { get; set; }
         public Tweet[] Answers { get; set; }
+
     }
 }
+
