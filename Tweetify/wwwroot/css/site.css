@@ -91,7 +91,7 @@ a {
 
 .avatar {
     background: #fff;
-    background-image: url(https://pbs.twimg.com/profile_images/888393386729902080/Wl4UD3JB_400x400.jpg);
+    background-image: url(https://www.google.com/search?q=twitter&safe=active&rlz=1C1CHBD_frFR767FR767&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiPieu00fzgAhXMA2MBHYfYAkcQ_AUIDygC&biw=1920&bih=937#imgrc=rSJv7_cQOp0OQM:);
     border: 5px solid #fff;
     border-radius: 50%;
     height: 200px;
@@ -279,3 +279,7 @@ a {
 /* END: Right column*/
 
 /* END: Main content elements' styles */
+
+.heading {
+    @include text-hide;
+}

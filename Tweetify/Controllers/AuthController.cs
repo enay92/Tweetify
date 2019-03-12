@@ -55,6 +55,8 @@ namespace Tweetify.Controllers
                     if (temp.Password == u.Password)
                     {
                         HttpContext.Session.SetInt32("UserId", temp.Id);
+                        HttpContext.Session.SetString("UserName", temp.Username);
+                        HttpContext.Session.SetInt32("NbFollowers", temp.NbFollowers);
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -72,7 +74,7 @@ namespace Tweetify.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Home", "Index");
+            return RedirectToAction("Login", "Auth");
         }
     }
 }

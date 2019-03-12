@@ -15,6 +15,11 @@ namespace Tweetify.Controllers
         {
             if (!HttpContext.Session.GetInt32("UserId").HasValue)
                 return RedirectToAction("Login", "Auth");
+            else
+            {
+                ViewData["UserName"] = HttpContext.Session.GetString("UserName");
+                ViewData["NbFollowers"] = HttpContext.Session.GetInt32("NbFollowers");
+            };
 
             return View();
         }
@@ -38,7 +43,7 @@ namespace Tweetify.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+             [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

@@ -55,7 +55,7 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="/Auth/Logout">Déconnexion</a>
                 </div>
             </div>
             <!-- END: Navbar User menu -->
@@ -72,6 +72,8 @@
                 <div class="avatar-container">
                     <div class="avatar">
                     </div>
+                    <h1 class="text-hide">Custom heading</h1>
+
                 </div>
             </div>
         </div>
@@ -97,7 +99,7 @@
                             <li>
                                 <a>
                                     <span class="profile-stats-item profile-stats-item-label">Followers</span>
-                                    <span class="profile-stats-item profile-stats-item-number">XX</span>
+                                    <span class="profile-stats-item profile-stats-item-number"> @ViewData["NbFollowers"]</span>
                                 </a>
                             </li>
                             <li>
@@ -119,8 +121,8 @@
                     <!-- Left column -->
                     <div class="profile-header">
                         <!-- Header information -->
-                        <h3 class="profile-fullname"><a>// TODO</a></h3>
-                        <h2 class="profile-element"><a>@@Handle</a></h2>
+                        <h3 class="profile-fullname"><a> @ViewData["UserName"]</a></h3>
+                        <h2 class="profile-element"><a> @@@ViewData["UserName"]</a></h2>
                         <a class="profile-element profile-website" hrerf=""><i class="octicon octicon-link"></i>&nbsp;estiam.com</a>
                         <a class="profile-element profile-website" hrerf=""><i class="octicon octicon-location"></i>&nbsp;Les Lilas, Paris</a>
                         <h2 class="profile-element"><i class="octicon octicon-calendar"></i>Joined XXXX</h2>
@@ -139,16 +141,7 @@
 </div>
 <!-- End: Center content column -->
 <div class="col right-col">
-    <div class="content-panel">
-        <div class="panel-header">
-            <h4>Who to follow</h4><small><a href="">Refresh</a></small><small><a href="">View all</a></small>
-        </div>
-        <!-- Who to Follow panel -->
-        <div class="panel-content">
-            <!--Follow list -->
-            <ol class="tweet-list"></ol>
-            <!--END: Follow list -->
-        </div>
+    
     </div>
 </div>
 </div>
