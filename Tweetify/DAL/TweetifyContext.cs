@@ -40,7 +40,9 @@ namespace Tweetify.DAL
                 entity.Property(e => e.Content).IsRequired();
                 entity.HasOne(e => e.Author).WithMany(u => u.Tweets).IsRequired();
                 entity.HasOne(e => e.OriginalTweet).WithMany(t => t.Answers);
+                entity.Property(e => e.IsRetweet).HasConversion<Int16>();
                 entity.HasMany(e => e.Likes).WithOne(l => l.Tweet);
+                entity.Property(e => e.Date);
                 entity.HasMany(e => e.Answers).WithOne(t => t.OriginalTweet);
             });
 

@@ -13,10 +13,10 @@ namespace Tweetify.Models
         public string Password { get; set; }
         public string Description { get; set; }
         public int NbFollowers { get; set; }
-        public Tweet[] Tweets { get; set; }
-        public Tweet[] Hightlights { get; set; }
-        public Follow[] Followers { get; set; }
-        public Follow[] Followings { get; set; }
+        public ICollection<Tweet> Tweets { get; set; }
+        public ICollection<Tweet> Hightlights { get; set; }
+        public ICollection<Follow> Followers { get; set; }
+        public ICollection<Follow> Followings { get; set; }
 
 
 

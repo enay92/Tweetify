@@ -14,9 +14,8 @@ namespace Tweetify.Models
         public string ImageURL { get; set; }
         public bool IsRetweet { get; set; }
         public Tweet OriginalTweet { get; set; }
-        public Like[] Likes { get; set; }
-        public Tweet[] Answers { get; set; }
+        public ICollection<Like> Likes { get; set; }
+        public ICollection<Tweet> Answers { get; set; }
 
     }
 }
-

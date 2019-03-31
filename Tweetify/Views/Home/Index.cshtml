@@ -1,29 +1,28 @@
-﻿@{
-
-}
+﻿@model Tweetify.Models.Tweet
 <div>
-    <form method="POST">
-        <div class="form-group">
+    <form asp-action="Tweeter">
+        <div class="Tweet">
             <label>Que voulez vous twittoz ??</label>
-            <input type="text" name="Content" class="form-control" placeholder="Twiiteyyy">
-            
+            <textarea type="text" name="Content" class="form-control" asp-for="Content"></textarea>
+
         </div>
         <div>
             <button type="submit" class="btn btn-search-bar">Tweet</button>
         </div>
-     </form>
+    </form>
 </div>
 
 <section>
-    <div>
+    @foreach (var tweet in (ViewData["Tweets"] as List<Tweet>))
+    {
         <div class="tweet-card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title"> @ViewData["Username"]</h5>
-                <h6 class="card-subtitle mb-2 text-muted">TWEET</h6>
-                <p class="card-text"> @ViewData["Content"]</p>
-                <a href="#" class="card-link">Like</a>
+                <h5 class="card-title">@tweet.Author.Username</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Tweet</h6>
+                <p class="card-text">@tweet.Content</p>
+                <a href="/home/like/@tweet.Id" class="card-link">Like (@tweet.Likes.Count())</a>
                 <a href="#" class="card-link">Retweetey</a>
             </div>
         </div>
-    </div>
+    }
 </section>
